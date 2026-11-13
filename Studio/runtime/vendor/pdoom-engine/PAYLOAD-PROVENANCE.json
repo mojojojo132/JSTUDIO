@@ -1,0 +1,9 @@
+{
+  "source_archive": "torq-animation-engine-pilot-source-v1.zip",
+  "source_archive_sha256": "2578c4adaf232a90f5d8d290aa4d4e13247ee738a1782acb8ea2e92faaa45287",
+  "selection": "Original snapshot files copied byte-for-byte except upstream README, source packaging script and unused demo scenes omitted. No demo song, lyrics, plates, fonts or rendered videos. TORQ-ENGINE.md distribution section adapted for Studio wrapper; SOURCE-SHA256 regenerated. Vite build copies optional audio/data only when present, so source-only builds do not require omitted demo media.",
+  "mutable_workspaces": "Configured Studio Content projects/<slug>/animation",
+  "engine_contract": "TORQ-ENGINE.md",
+  "neutralization": "2026-10-11: bundled output logos/fonts and unused branded pilot scenes retired with hashes; generic geometry fixture; project font loading requires selected external pack.",
+  "local_core_patch": "2026-10-20: Studio renderer quantizes audio timing to the output frame interval and pads short audio so it cannot truncate planned video frames. Upstream archive identity and pinned dependencies are retained."
+}

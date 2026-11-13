@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "jstudio",
+  "version": "1.0.0",
+  "name": "JStudio",
+  "description": "Optional JStudio starter identity. User-selected identities control each film; no automatic watermark.",
+  "tokens": {
+    "background": "#0A2544",
+    "foreground": "#F5F9FF",
+    "primary": "#2D53F2",
+    "secondary": "#43A8FF",
+    "accent": "#51DCFE",
+    "fontFamily": "Arial"
+  },
+  "assets": {
+    "logo": "assets/logo.svg"
+  },
+  "files": {
+    "assets/logo.svg": "c2affb1af21449371f98c9a6477759dfce55230910bc6dc5874ce91879982249"
+  },
+  "fonts": []
+}

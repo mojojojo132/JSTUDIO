@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {assessReadability} from '../scripts/readability.mjs';
+const measured={streams:[{type:'video',width:780,height:1688}]};
+const input={masterWidth:1080,viewingWidth:390,captureCssWidth:390,captureScale:2,placementScale:.9,minimumCameraScale:1.18,text:[{label:'Required label',cssPx:12,required:true,minimumDisplayPx:14},{label:'Incidental',cssPx:12,required:false}]};
+test('required text is evaluated at declared viewing width, not confused with capture resolution',()=>{const r=assessReadability(input,measured);assert.ok(Math.abs(r.text[0].masterPx-25.488)<.00001);assert.ok(Math.abs(r.text[0].displayPx-9.204)<.00001);assert.equal(r.text[0].status,'below-target');assert.equal(r.text[1].status,'incidental');assert.equal(r.approval,false);});
+test('geometry has no universal automatic readability pass',()=>{const r=assessReadability({...input,text:[{label:'Title',cssPx:60,required:true}]},measured);assert.equal(r.text[0].status,'needs-review');assert.throws(()=>assessReadability({...input,captureScale:3},measured),/disagrees/);assert.throws(()=>assessReadability({...input,placementScale:NaN},measured),/positive/);assert.throws(()=>assessReadability(input,{streams:[{type:'audio'}]}),/video/);});

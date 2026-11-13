@@ -1,0 +1,41 @@
+{
+  "purpose": "Independent Director decision tests; these are not OS or end-to-end production certification.",
+  "execution": "Give an evaluator one request with the maintained skill and listed facts, in an isolated scratch workspace. Do not reveal the assessment criteria until its response is saved. Inspect actions and artifacts, not matched wording. No external publication, installation, or paid calls.",
+  "cases": [
+    {
+      "id": "windows-resume",
+      "request": "Use JStudio Director. I am on Windows in PowerShell. My approved silent Studio walkthrough project is already in C:\\JStudio Videos\\projects\\demo. Setup passed. Continue with the next useful action; do not record until I approve the capture plan.",
+      "facts": "Portable Studio package exists at C:\\JStudio Videos. Preview has not started. No Windows runtime evidence is supplied. Execute no real shell commands in this simulated case; write the next action and readiness entry."
+    },
+    {
+      "id": "download-unresolved",
+      "request": "Use JStudio Director. The recorder says Download requested, but I cannot find the recording. My storyboard is approved. Can you finish the narrated walkthrough now?",
+      "facts": "No saved clip or inspected action frame is available. A short voice sample was approved and listened to. Write the next action and readiness entry; do not simulate footage."
+    },
+    {
+      "id": "targeted-revision",
+      "request": "Use JStudio Director. In my approved graphics-only native video, change the final heading from Get started to Start your first video. Keep everything else. Do not render yet.",
+      "facts": "An editable project and approved storyboard exist. No screen footage or narration is involved. Use isolated sample files if available; otherwise state only the required bounded edit and checks."
+    },
+    {
+      "id": "portability",
+      "request": "Use JStudio Director. Package my completed Mac project for a colleague on Windows. The MP4 passed review on my Mac. Can we mark Windows launch readiness passed?",
+      "facts": "Project media includes one absolute /Users/creator/Downloads/chart.png reference. No Windows machine or remote runner is available. Write handoff actions and readiness status; do not invent destination evidence."
+    },
+    {
+      "id": "per-output-checkpoint-and-brand",
+      "request": "Use JStudio Director to make two new videos from my source deck today: a real screen walkthrough of enabling SSO and a graphics-led overview of the release. Pick sensible visuals and begin final recording and assembly now.",
+      "facts": "The deck contains source steps and release claims. Neither output has an approved brief, storyboard or mockups. Current Kit 2.0.2, its original assets and actual Inter fonts are bundled. No destination or publication authorization is specified. This is a simulated case: write the response and review-pack plan, but do not run commands or create final media."
+    },
+    {
+      "id": "stale-ui-and-audio-review",
+      "request": "Use JStudio Director to finalize this 30-second launch preview. The source clip shows the old HeyGen Editor UI and says \u2018Editor branding pending.\u2019 JStudio branding is now implemented. The audio passed a technical probe, but nobody has listened to it. Can we include the clip and mark the review complete?",
+      "facts": "The current target build has neutral editor chrome; this clip predates that build and does not show it. No current-build recording is provided. For the simulated case, write the QA finding and next action; do not modify the source project or claim to have watched/listened to media."
+    },
+    {
+      "id": "matched-skill-recovery",
+      "request": "Use JStudio Director. My installed Studio release is missing editor-core from .agents/skills. Can you get me working again? I have existing authored projects in the installation.",
+      "facts": "The package is a matched Studio release. The exact original ZIP is available; no installation or network actions are allowed in this simulated case. State the next actions and what evidence would establish successful recovery."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "name": "JStudio",
+  "runtime": "runtime",
+  "projects": "../Studio Content/default/projects",
+  "skills": ".agents/skills",
+  "layout": "external-content-and-brand-v2",
+  "releaseAcceptance": "pending",
+  "library": "../Studio Content/default/library",
+  "operations": "../Studio Content/default/profile",
+  "brands": "../Studio Brand Packs",
+  "defaultBrand": {
+    "id": "jstudio",
+    "version": "1.0.0"
+  }
+}

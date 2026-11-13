@@ -1,0 +1,30 @@
+{
+  "name": "jstudio",
+  "version": "1.3.0-alpha.5",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "node runtime/scripts/setup.mjs",
+    "new": "node runtime/scripts/new-project.mjs",
+    "start": "node runtime/scripts/launch.mjs",
+    "hf": "node runtime/scripts/hf.mjs",
+    "verify": "node runtime/scripts/verify.mjs",
+    "doctor": "node runtime/scripts/doctor.mjs",
+    "animation": "node runtime/scripts/animation.mjs",
+    "projects": "node runtime/scripts/launch.mjs",
+    "run:report": "node runtime/scripts/run-report.mjs",
+    "workflow": "node runtime/scripts/workflow.mjs",
+    "media:check": "node runtime/scripts/media-readiness.mjs",
+    "candidate:check": "node runtime/scripts/encoded-qc.mjs",
+    "caption:check": "node runtime/scripts/caption-qc.mjs",
+    "font:check": "node runtime/scripts/font-readiness.mjs",
+    "editor": "node runtime/scripts/hf.mjs",
+    "animator": "node runtime/scripts/animation.mjs",
+    "production": "node runtime/scripts/production.mjs",
+    "improve": "node runtime/scripts/improvement-loop.mjs",
+    "package": "node runtime/scripts/package-studio.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

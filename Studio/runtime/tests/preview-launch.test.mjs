@@ -1,0 +1,7 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {previewLaunchArguments} from '../scripts/preview-launch.mjs';
+const restricted={platform:'darwin',env:{CODEX_SANDBOX:'seatbelt'}};
+test('contradictory open flags cannot bypass restricted launch protection',()=>{assert.throws(()=>previewLaunchArguments(['preview','--no-open','--open'],restricted),/Conflicting/);});
+test('restricted preview starts the editor server without an implicit OS browser launch',()=>{assert.deepEqual(previewLaunchArguments(['preview','/film','--background'],restricted),['preview','/film','--background','--no-open']);});
+test('explicit browser launch needs approved execution; no-open and queries remain available',()=>{assert.throws(()=>previewLaunchArguments(['preview','/film','--open'],restricted),/STUDIO_BROWSER_EXECUTION_REQUIRED/);assert.throws(()=>previewLaunchArguments(['preview','/film','--browser-path=chrome'],restricted),/STUDIO_BROWSER_EXECUTION_REQUIRED/);for(const flag of ['--no-open','--open=false','--status','--help']){const args=['preview','/film',flag];assert.deepEqual(previewLaunchArguments(args,restricted),args);}});
+test('ordinary coworker preview and unrelated commands retain native behavior',()=>{const args=['preview','/film'];assert.deepEqual(previewLaunchArguments(args,{platform:'darwin',env:{}}),args);assert.deepEqual(previewLaunchArguments(['render','/film'],restricted),['render','/film']);});

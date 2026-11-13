@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "engineering-revision",
+  "shots": [
+    {
+      "id": "engineering-01",
+      "scene": "engine-test",
+      "duration": 6,
+      "params": {
+        "travelScale": 0.8
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "engineering-test",
+  "shots": [
+    {
+      "id": "engineering-01",
+      "scene": "does-not-exist",
+      "duration": 6,
+      "params": {}
+    }
+  ]
+}

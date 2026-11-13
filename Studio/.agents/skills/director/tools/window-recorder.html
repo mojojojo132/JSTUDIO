@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>JStudio local recorder</title>
+<style>body{font:18px Inter,system-ui;margin:40px;max-width:760px;background:#F5F7FB;color:#000}button,a{margin:8px}button{background:#2E54F2;color:white;border:0;border-radius:7px;padding:14px;font:600 16px system-ui}button:disabled{opacity:.5}video{display:block;width:100%;background:#111;margin-top:20px}video[hidden]{display:none}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style>
+<h1>Local recorder</h1><p>For Studio, choose the browser tab showing your intended project in the sharing picker. Match its title and preview before sharing; other tabs or windows may show a different project. For other applications, choose only the intended window. Audio is not recorded.</p>
+<button id="start">Start capture</button><button id="stop" disabled>Stop capture</button><a id="download" hidden>Download recording again</a><a id="metadata" hidden>Download capture details</a>
+<p id="status" role="status">Ready</p><p id="empty-preview">Your recording preview will appear here after you stop capture.</p><video id="preview" controls muted hidden></video><pre id="details"></pre>
+<script>
+let stream, recorder, urls=[];
+const $=id=>document.getElementById(id), say=text=>$('status').textContent=text;
+function release(){stream?.getTracks().forEach(track=>track.stop());stream=null;}
+function ready(){ $('start').disabled=false; $('stop').disabled=true; }
+function link(id,blob,name){const url=URL.createObjectURL(blob);urls.push(url);const a=$(id);a.href=url;a.download=name;a.hidden=false;return url;}
+$('start').onclick=async()=>{
+ $('start').disabled=true;
+ try{
+  const captureStream=stream=await navigator.mediaDevices.getDisplayMedia({video:{frameRate:30},audio:false});
+  const track=captureStream.getVideoTracks()[0];
+  const take='jstudio-capture-'+new Date().toISOString().replace(/[:.]/g,'-')+'-'+crypto.randomUUID().slice(0,8);
+  const details={take,startedAt:new Date().toISOString(),browser:navigator.userAgent,capture:track.getSettings(),audio:false};
+  const mimeType=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'].find(type=>MediaRecorder.isTypeSupported(type));
+  if(!mimeType)throw new Error('This browser does not support WebM recording. Try a supported browser such as Chrome or Microsoft Edge.');
+  const activeRecorder=recorder=new MediaRecorder(captureStream,{mimeType,videoBitsPerSecond:8000000});
+  const chunks=[];
+  const releaseTake=()=>{captureStream.getTracks().forEach(track=>track.stop());if(stream===captureStream)stream=null;};
+  let failed=false;
+  activeRecorder.ondataavailable=event=>{if(event.data.size)chunks.push(event.data)};
+  activeRecorder.onerror=event=>{failed=true;say('Recording failed: '+(event.error?.message||'browser recorder error'));releaseTake(); /* Wait for this recorder's stop event before enabling restart. */};
+  activeRecorder.onstop=()=>{
+   releaseTake();if(recorder!==activeRecorder)return;ready();if(failed)return;
+   const blob=new Blob(chunks,{type:activeRecorder.mimeType});
+   if(!blob.size){say('No recording bytes were captured. Nothing was downloaded.');return;}
+   urls.forEach(url=>URL.revokeObjectURL(url));urls=[];
+   details.stoppedAt=new Date().toISOString();details.bytes=blob.size;details.mimeType=blob.type;details.filename=take+'.webm';details.saveState='download requested; file verification pending';
+   $('preview').src=link('download',blob,details.filename);
+   $('preview').hidden=false;$('empty-preview').hidden=true;
+   link('metadata',new Blob([JSON.stringify(details,null,2)],{type:'application/json'}),take+'.capture.json');
+   $('details').textContent=JSON.stringify(details,null,2);
+   $('download').click();
+   say('Download requested: '+details.filename+' ('+blob.size+' bytes). Locate the file in browser Downloads, then verify it. This page cannot confirm a saved path. Keep this page open to retry the download.');
+  };
+  activeRecorder.start(1000);$('stop').disabled=false;
+  $('details').textContent=JSON.stringify(details,null,2);say('Recording selected '+(details.capture.displaySurface||'surface')+'.');
+  track.onended=()=>{if(activeRecorder.state==='recording')activeRecorder.stop()};
+ }catch(error){
+  release();ready();
+  if(error.name==='NotAllowedError')say('Capture was cancelled or sharing permission was not granted. No new recording started. Select Start capture to try again and choose the intended tab or window. If sharing is blocked by device policy, use your approved support process.');
+  else if(error.name==='AbortError')say('Capture selection was closed or interrupted. No new recording started. Select Start capture to try again and choose the intended tab or window.');
+  else say('Capture did not start: '+error.message);
+ }
+};
+$('stop').onclick=()=>{if(recorder?.state==='recording'){ $('stop').disabled=true;say('Finishing recording…');recorder.stop();}};
+window.addEventListener('beforeunload',event=>{if(recorder?.state==='recording'){event.preventDefault();event.returnValue='';}});
+</script></html>

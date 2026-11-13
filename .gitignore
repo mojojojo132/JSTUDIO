@@ -1,0 +1,19 @@
+.DS_Store
+node_modules/
+.runtime/
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.jstudio-backups/
+.jstudio-qa/
+Studio/runtime/backups/
+Studio Content/default/projects/*
+!Studio Content/default/projects/.gitkeep
+Studio Content/default/library/media/*
+!Studio Content/default/library/media/.gitkeep
+*.zip

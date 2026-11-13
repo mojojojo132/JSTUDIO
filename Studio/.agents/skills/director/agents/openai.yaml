@@ -1,0 +1,4 @@
+interface:
+  display_name: "JStudio Director"
+  short_description: "Creative direction, research and video production"
+  default_prompt: "Use $director as my creative director to develop the story, research what matters, delegate useful work to available subagents, and produce a JStudio video with Animator animation and Editor editing."

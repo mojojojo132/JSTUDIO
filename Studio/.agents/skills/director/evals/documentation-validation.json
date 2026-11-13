@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-05T12:18:48Z",
+  "scope": "Static entrypoint/eval validation and independent scenario-based desk review after token-efficiency revision; not runtime, OS, or end-to-end video certification",
+  "changedFiles": [
+    "SKILL.md",
+    "references/guided-workflow.md",
+    "references/production.md",
+    "evals/scenarios.json",
+    "evals/assessment.md",
+    "evals/documentation-validation.json"
+  ],
+  "entrypointSizeProxy": {
+    "basis": "UTF-8 bytes and whitespace-separated words; no compatible local GPT tokenizer was available",
+    "before": {"bytes": 7358, "words": 971},
+    "after": {"bytes": 5894, "words": 783},
+    "reduction": {"bytes": 1464, "words": 188, "bytesPercent": 19.9, "wordsPercent": 19.4}
+  },
+  "baselineComparison": "Before this edit, maintained SKILL.md and the four reviewed references matched the exact rc.8 counterparts byte-for-byte. The candidate and ZIPs were not changed.",
+  "checks": {
+    "skillCreatorQuickValidate": "attempted, blocked: PyYAML is unavailable in the active Python; prior temporary validation environment was unavailable; no dependency installed",
+    "relativeDocumentationLinks": "pass, 14 SKILL.md links, 3 guided-workflow links and 5 production links resolve",
+    "scenarioJson": "pass, valid JSON with 6 cases and unique IDs",
+    "invariantSmokeChecks": "pass, entrypoint and guided workflow align on source meaning/approved wording/sequence by default and reorder confirmation; D-005 per-output questions/storyboard/mockups/confirmation, Current Kit version, native editability, current-build UI check, and explicit pending perceptual-listening state retained",
+    "independentBehaviorEvaluation": "pass, six simulated scenarios independently desk-reviewed; per-output source-sequence case rechecked after core/reference correction; not runtime, OS, or end-to-end execution",
+    "actualWindowsDevice": "not available; not tested",
+    "fullDirectorEndToEnd": "not performed"
+  },
+  "sha256": {
+    "SKILL.md": "00e5fdd2a1ddcb33c9070d07a77c2d09a86b21859fc37de07855e234c1834e1a",
+    "references/capture-fast-path.md": "941f84d9c497010e8fff57bd8dda8d12a379ce5e92bc79544152e03bd9df29eb",
+    "references/guided-workflow.md": "8554a844896cbc3ccb6f0bdb8ca21614994af9e515604874b8d45ccf8650dd75",
+    "references/production.md": "328d5dbe8b431170fd59e51724a900ca85b73989460cb3c003a0aabe480bb6b5",
+    "references/brand-and-art-direction.md": "2598fb0979f1b80d5e77e4c70d0bd65b17b53bd681018fc0387c0dd842d65a4a",
+    "evals/scenarios.json": "6401f8cffedfec0106a594aa920da8f73446b7386244dc9fb6c080b9c90de2fe",
+    "evals/assessment.md": "e19f268fe1f3841a694feb2a09227db119b68676a8f1784d6806dad3be17f9ce"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "upstream_archive": "/Users/john/Downloads/pdoom-video-main.zip",
+  "upstream_sha256": "ba79615409919a00065b97827ca0f6699017c382d62e39db618a9668c19ed0c8",
+  "upstream_revision": "fa164b74fd0b26a99375715b619c55b4a0fb3d05",
+  "adaptation": "Torq engine engineering candidate, 2026-10-08",
+  "output_brand_authority": "Project-pinned snapshot from configured external Studio Brand Packs; no engine-bundled output assets",
+  "retired_brand_assets": "Builder/archive/retired-brand-copies-20261011/engine/ARCHIVE-SHA256.json"
+}
